@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "556657403209",
+    "project_id": "udacoding-week3",
+    "storage_bucket": "udacoding-week3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:556657403209:android:dd8a5bc5e4a77b44592698",
+        "android_client_info": {
+          "package_name": "com.aqibaja.flutter_udacoding_week3"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "556657403209-l8tdcib7uado83jhs0red9r46mjv631b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.aqibaja.flutter_udacoding_week3",
+            "certificate_hash": "8c719c8f19f0fc0c224ed80d33de93c7568da1c4"
+          }
+        },
+        {
+          "client_id": "556657403209-14adsep57rejmhke7ik00erquuu7aq73.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB7TTjnG0xprXcMCBwY38i0NXGhmzZtZBo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "556657403209-14adsep57rejmhke7ik00erquuu7aq73.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
