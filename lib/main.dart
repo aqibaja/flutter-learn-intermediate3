@@ -1,7 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:flutter_udacoding_week3/screen/sign_in.dart';
 import 'package:flutter_udacoding_week3/screen/splash_screen.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
@@ -15,9 +14,8 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    //initialize SizerUtil
     return MaterialApp(
-      title: "Female in Action",
+      title: "Recipe App",
       home: SplashScreen(),
       theme: ThemeData(brightness: Brightness.light, primaryColor: Colors.cyan
           /* light theme settings */

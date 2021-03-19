@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
+import 'package:flutter_udacoding_week3/screen/add_screen.dart';
+import 'package:flutter_udacoding_week3/screen/edit_profile.dart';
+import 'package:flutter_udacoding_week3/screen/feed_screen.dart';
+import 'package:flutter_udacoding_week3/screen/profile_screen.dart';
 
 class RecipePage extends StatefulWidget {
   final String uid;
-  RecipePage({this.uid});
+  final String username;
+  RecipePage({this.uid, this.username});
   @override
   _RecipePageState createState() => _RecipePageState();
 }
@@ -27,17 +32,22 @@ class _RecipePageState extends State<RecipePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Recipe App"),
-        centerTitle: true,
-      ),
       body: SizedBox.expand(
         child: PageView(
           controller: _pageController,
           onPageChanged: (index) {
             setState(() => _currentIndex = index);
           },
-          children: <Widget>[Container(), Container(), Container()],
+          children: <Widget>[
+            FeedScreen(),
+            AddScreen(
+              uid: widget.uid,
+            ),
+            ProfileScreen(
+              uid: widget.uid,
+              username: widget.username,
+            )
+          ],
         ),
       ),
       bottomNavigationBar: BottomNavyBar(

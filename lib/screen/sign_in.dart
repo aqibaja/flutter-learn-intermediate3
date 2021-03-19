@@ -14,8 +14,15 @@ class SignIn extends StatefulWidget {
 
 class _SignInState extends State<SignIn> {
   String uid;
+  String username;
   @override
   Widget build(BuildContext context) {
+    print(AuthProviderService.instance.user);
+    if (AuthProviderService.instance.user != null) {
+      var user = AuthProviderService.instance.user;
+      uid = user.uid;
+      username = user.displayName;
+    }
     //firestore
     FirebaseFirestore firestore = FirebaseFirestore.instance;
     CollectionReference users = firestore.collection('users');
@@ -29,6 +36,7 @@ class _SignInState extends State<SignIn> {
                     await AuthProviderService.instance.signIn();
                     var user = AuthProviderService.instance.user;
                     uid = user.uid;
+                    username = user.displayName;
                     users.doc(uid).set({
                       'id': uid,
                       'username': user.displayName,
@@ -48,6 +56,7 @@ class _SignInState extends State<SignIn> {
                 )
               : RecipePage(
                   uid: uid,
+                  username: username,
                 )),
     );
   }
