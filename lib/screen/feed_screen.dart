@@ -130,7 +130,7 @@ class _FeedScreenState extends State<FeedScreen> {
                 children: [
                   CircleAvatar(
                     radius: 26.1,
-                    backgroundColor: Colors.pink,
+                    backgroundColor: Colors.cyan,
                     child: CircleAvatar(
                       radius: 25.0,
                       backgroundImage: uAvatarUrl == null

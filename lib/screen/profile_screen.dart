@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_udacoding_week3/models/model_feed.dart';
+import 'package:flutter_udacoding_week3/screen/detail_screnn.dart';
 import 'package:flutter_udacoding_week3/screen/sign_in.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_udacoding_week3/services/sign_in_google.dart';
@@ -225,13 +226,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 List<ModelFeed> feed = snapshot.data.docs
                     .map((e) => ModelFeed.fromMap(e.data()))
                     .toList();
+                List<String> docId =
+                    snapshot.data.docs.map((e) => e.id).toList();
                 return GridView.builder(
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 3),
                   itemCount: feed.length,
                   itemBuilder: (BuildContext context, i) {
-                    return itemGrid(feed[i].username, feed[i].uid,
-                        feed[i].uavatarUrl, feed[i].imageUrl, feed[i].desc);
+                    return itemGrid(
+                        feed[i].username,
+                        feed[i].uid,
+                        feed[i].uavatarUrl,
+                        feed[i].imageUrl,
+                        feed[i].desc,
+                        docId[i]);
                   },
                 );
               } else {
@@ -241,13 +249,24 @@ class _ProfileScreenState extends State<ProfileScreen> {
             }));
   }
 
-  Widget itemGrid(username, uid, uavatarUrl, imageUrl, desc) {
-    return Padding(
-      padding: const EdgeInsets.all(3.0),
-      child: Container(
-        child: Image.network(
-          imageUrl,
-          fit: BoxFit.fill,
+  Widget itemGrid(username, uid, uavatarUrl, imageUrl, desc, docId) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => DetailScreen(
+                      docId: docId,
+                      uid: uid,
+                    )));
+      },
+      child: Padding(
+        padding: const EdgeInsets.all(3.0),
+        child: Container(
+          child: Image.network(
+            imageUrl,
+            fit: BoxFit.fill,
+          ),
         ),
       ),
     );

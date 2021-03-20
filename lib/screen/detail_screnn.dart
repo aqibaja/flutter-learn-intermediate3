@@ -2,11 +2,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_udacoding_week3/models/model_feed.dart';
+import 'package:flutter_udacoding_week3/screen/edit_post.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class DetailScreen extends StatefulWidget {
   final String docId;
-  DetailScreen({this.docId});
+  final String uid;
+  DetailScreen({this.docId, this.uid});
   @override
   _DetailScreenState createState() => _DetailScreenState();
 }
@@ -18,12 +20,83 @@ class _DetailScreenState extends State<DetailScreen> {
   CollectionReference feed = firestore.collection("feed");
   CollectionReference favorite = firestore.collection("favorite");
 
+  String _selectedItem = 'Edit';
+  List _options = ['Edit', 'Delete'];
+
+  _showDialogDelete(BuildContext context) async {
+    await showDialog<String>(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            contentPadding: const EdgeInsets.all(16.0),
+            title: Text(
+              "Delete Post",
+              textAlign: TextAlign.center,
+            ),
+            titleTextStyle: TextStyle(
+              fontSize: 25.0,
+              color: Colors.black,
+            ),
+            content: Container(
+                height: 35,
+                child: Center(
+                  child: Text(
+                    "Yakin ingin menghapus ??",
+                    style: TextStyle(fontSize: 25),
+                  ),
+                )),
+            actions: <Widget>[
+              FlatButton(
+                  child: const Text('CANCEL'),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  }),
+              FlatButton(
+                  child: const Text('DELETE'),
+                  onPressed: () {
+                    EasyLoading.show(status: 'loading...');
+                    feed.doc(widget.docId).delete().then((value) {
+                      EasyLoading.dismiss();
+                      int count = 2;
+                      Navigator.of(context).popUntil((_) => count-- <= 0);
+                    });
+                  }),
+            ],
+          );
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     print('detail doc: ' + widget.docId);
     return Scaffold(
       appBar: AppBar(
         title: Text("Detail Recipe", style: GoogleFonts.pacifico(fontSize: 25)),
+        actions: [
+          widget.uid != null
+              ? PopupMenuButton(
+                  itemBuilder: (BuildContext bc) {
+                    return _options
+                        .map((day) => PopupMenuItem(
+                              child: Text(day),
+                              value: day,
+                            ))
+                        .toList();
+                  },
+                  onSelected: (value) {
+                    if (value == 'Edit')
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => EditPostScreen(
+                                    docFeedId: widget.docId,
+                                  )));
+                    else
+                      _showDialogDelete(context);
+                  },
+                )
+              : Container(),
+        ],
       ),
       body: StreamBuilder<DocumentSnapshot>(
           stream: feed.doc(widget.docId).snapshots(),
@@ -89,7 +162,7 @@ class _DetailScreenState extends State<DetailScreen> {
               children: [
                 CircleAvatar(
                   radius: 26.1,
-                  backgroundColor: Colors.pink,
+                  backgroundColor: Colors.cyan,
                   child: CircleAvatar(
                     radius: 25.0,
                     backgroundImage: uAvatarUrl == null
