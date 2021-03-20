@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter_udacoding_week3/screen/add_screen.dart';
-import 'package:flutter_udacoding_week3/screen/edit_profile.dart';
 import 'package:flutter_udacoding_week3/screen/feed_screen.dart';
 import 'package:flutter_udacoding_week3/screen/profile_screen.dart';
 

@@ -100,9 +100,6 @@ class _AddScreenState extends State<AddScreen> {
     final _formKey = GlobalKey<FormState>(); //key
     TextEditingController _descControler = TextEditingController();
     TextEditingController _titleControler = TextEditingController();
-    //firestore
-    FirebaseFirestore firestore = FirebaseFirestore.instance;
-    CollectionReference feed = firestore.collection('feed');
 
     return Scaffold(
       appBar: AppBar(

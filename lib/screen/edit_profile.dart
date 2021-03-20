@@ -121,7 +121,7 @@ class _EditScreenState extends State<EditScreen> {
   Widget build(BuildContext context) {
     String defaultFontFamily = 'Roboto-Light.ttf';
     double defaultFontSize = 14;
-    double defaultIconSize = 17;
+    //double defaultIconSize = 17;
 
     _textEditingUsername.text = widget.username;
     _textEditingWebsite.text = widget.website;
