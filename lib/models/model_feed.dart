@@ -4,13 +4,20 @@ class ModelFeed {
   String uavatarUrl;
   String imageUrl;
   String desc;
-  ModelFeed(this.username, this.uid, this.uavatarUrl, this.imageUrl, this.desc);
+  String date;
+  String title;
+  String favorite;
+  ModelFeed(this.username, this.uid, this.uavatarUrl, this.imageUrl, this.desc,
+      this.date, this.title);
   ModelFeed.map(dynamic obj) {
     this.username = obj['username'];
     this.uid = obj['password'];
     this.uavatarUrl = obj['gender'];
     this.imageUrl = obj['emailid'];
     this.desc = obj['desc'];
+    this.date = obj['date'];
+    this.title = obj['title'];
+    this.favorite = obj['favorite'];
   }
   /* String get username => username;
   String get uid => uid;
@@ -24,6 +31,9 @@ class ModelFeed {
     map['uavatarUrl'] = uavatarUrl;
     map['imageUrl'] = imageUrl;
     map['desc'] = desc;
+    map['date'] = date;
+    map['title'] = title;
+    map['favorite'] = favorite;
     return map;
   }
 
@@ -33,5 +43,8 @@ class ModelFeed {
     this.uavatarUrl = map['uavatarUrl'];
     this.imageUrl = map['imageUrl'];
     this.desc = map['desc'];
+    this.date = map['date'];
+    this.title = map['title'];
+    this.favorite = map['favorite'];
   }
 }

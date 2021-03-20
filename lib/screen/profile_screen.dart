@@ -4,6 +4,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_udacoding_week3/models/model_feed.dart';
 import 'package:flutter_udacoding_week3/screen/sign_in.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_udacoding_week3/services/sign_in_google.dart';
 
 import 'edit_profile.dart';
 
@@ -163,10 +164,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
               Expanded(
                   child: ElevatedButton(
-                onPressed: () => Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(builder: (context) => SignIn()),
-                    (route) => false),
+                onPressed: () {
+                  AuthProviderService.instance.logOut();
+                  Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(builder: (context) => SignIn()),
+                      (route) => false);
+                },
                 style: ButtonStyle(
                     backgroundColor:
                         MaterialStateProperty.all<Color>(Colors.red)),

@@ -6,6 +6,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:intl/intl.dart';
 
 class AddScreen extends StatefulWidget {
   final String uid;
@@ -23,6 +24,7 @@ class _AddScreenState extends State<AddScreen> {
   File _image; //variabel untuk menyimpan image sementara
   final picker = ImagePicker(); //objeck picker untuk mengambil image
   String filename;
+  String date = DateFormat("yyyy-MM-dd").format(DateTime.now());
 
   //method menyambil image di camera
   Future getImageCamera() async {
@@ -70,7 +72,9 @@ class _AddScreenState extends State<AddScreen> {
           'desc': desc,
           'title': title,
           'imageUrl': value,
-          'uavatarUrl': result['uavatarUrl']
+          'uavatarUrl': result['uavatarUrl'],
+          'date': date,
+          'favorite': null
         }).then((result) {
           print("sukses!!!");
           EasyLoading.dismiss();

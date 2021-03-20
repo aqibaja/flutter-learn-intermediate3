@@ -39,7 +39,9 @@ class _RecipePageState extends State<RecipePage> {
             setState(() => _currentIndex = index);
           },
           children: <Widget>[
-            FeedScreen(),
+            FeedScreen(
+              uid: widget.uid,
+            ),
             AddScreen(
               uid: widget.uid,
             ),
